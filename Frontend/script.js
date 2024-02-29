@@ -38,4 +38,12 @@
         chatbotResponse.textContent = "Please enter a question.";
       }
     });
-  });
+
+    userInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+
+            submitButton.click();
+        }
+    });
+});

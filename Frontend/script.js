@@ -85,10 +85,10 @@ async function getChatbotResponse(message) {
   }
 }
 
-userInput.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
+userInput.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
 
-        submitButton.click();
-    }
+    submitButton.click();
+  }
 });

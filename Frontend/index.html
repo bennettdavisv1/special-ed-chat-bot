@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chatbot UI</title>
+    <!-- Insert Tailwind CSS CDN below -->
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
 </head>
 <body>
+    <div class="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+        <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-6 space-y-4">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Ask the Chatbot</h2>
+            </div>
+            <div>
+                <textarea id="userInput" class="w-full p-3 border border-gray-300 rounded resize-none" placeholder="Type your question here..." rows="4"></textarea>
+            </div>
+            <div>
+                <button id="submitButton" class="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white py-2 rounded hover:from-blue-700 hover:to-teal-500 transition duration-150 ease-in-out shadow">Submit</button>
+            </div>
+            <!-- Chatbot response area -->
+            <div class="bg-gray-50 p-3 rounded shadow">
+                <p class="text-gray-800" id="chatbotResponse">Your chatbot's response will appear here...</p>
+            </div>
+        </div>
+    </div>
     
+    <script src="script.js"></script>
 </body>
 </html>

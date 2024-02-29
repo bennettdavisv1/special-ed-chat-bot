@@ -19,6 +19,7 @@ def chat():
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=messages,
+        temperature=0.3  # Update as needed. Closer to 0 makes answers less varied and closer to 1 makes answers more varied
     )
     
     chat_gpt_reply = response.choices[0].message.content.strip()

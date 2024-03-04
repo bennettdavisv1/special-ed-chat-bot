@@ -6,3 +6,7 @@ h2 {
     border-left: 10px;
     border-right: 10px;
 }
+
+.flex-grow {
+    width: 500px;
+}

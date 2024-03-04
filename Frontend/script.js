@@ -64,17 +64,9 @@ async function getChatbotResponse(message) {
   });  
 
   document.getElementById('aboutButton').addEventListener('click', function() {
-    fetch('content.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        document.getElementById('aboutContent').innerHTML = `<h2>${data.title}</h2><p>${data.content}</p>`;
-      })
-      .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-      });
+    window.location.href = 'aboutPage.html';
+  });
+
+  document.getElementById('title').addEventListener('click', function() {
+    window.location.href = 'index.html';
   });

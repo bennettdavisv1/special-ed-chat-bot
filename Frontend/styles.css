@@ -10,3 +10,7 @@ h2 {
 .flex-grow {
     width: 500px;
 }
+
+textarea {
+    resize: none;
+}

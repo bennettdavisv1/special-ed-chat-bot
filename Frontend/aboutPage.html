@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot UI</title>
+    <title>About Page</title>
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-
 <body>
     <!-- Header -->
     <header class="bg-gray-800 text-white body-font shadow w-full">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
-          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0 cursor-pointer">
+          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
               <path d="M21 16V8a2 2 0 0 0-2-2h-5l-2-3h-4l-2 3H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"></path>
               <circle cx="12" cy="13" r="4"></circle>
@@ -27,25 +25,6 @@
         </div>
     </header>      
     <!-- End header -->
-    <!-- Main page -->
-    <div id="mainPage">
-        <div class="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-            <div id="box" class="max-w-full w-full bg-white rounded-lg shadow-lg p-6 space-y-4">
-                <div id="messages" class="max-h-96 overflow-y-auto p-3 space-y-2 bg-gray-50 rounded shadow">
-                    <!-- Dynamic chat messages will appear here -->
-                </div>
-                <form>
-                    <div class="max-w-full flex items-start justify-center bg-white rounded-lg border border-gray-200 p-4 space-x-3">
-                        <div class="flex-grow">
-                        <textarea id="userInput" class="w-full border-none focus:ring-0 p-2" placeholder="Message your tutor..." rows="3"></textarea>
-                        </div>
-                        <button id="submitButton" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- End of main page -->
 
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>

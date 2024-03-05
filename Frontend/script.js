@@ -32,7 +32,7 @@ function addMessage(sender, message) {
   messageDiv.classList.add('p-3', sender === 'user' ? 'bg-blue-100' : 'bg-green-100', 'rounded', 'text-gray-800');
   messageDiv.textContent = message;
   messagesContainer.appendChild(messageDiv);
-  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the latest message
+  scrollToBottom();
 }
 
 // Wait for the DOM to be fully loaded
@@ -81,3 +81,7 @@ function resizeTextarea(id) {
 document.getElementById('userInput').addEventListener('input', function() {
   resizeTextarea('userInput');
 });
+
+function scrollToBottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}

@@ -20,3 +20,8 @@ h2 {
 #userInput {
     resize: none;
 }
+
+#messages div {
+    white-space: normal;
+    overflow-wrap: break-word;
+}

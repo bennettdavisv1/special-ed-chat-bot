@@ -13,7 +13,6 @@ h2 {
 
 #textAreaContainer {
     display: flex;
-    flex-direction: column-reverse;
     min-height: 100px;
 }
   

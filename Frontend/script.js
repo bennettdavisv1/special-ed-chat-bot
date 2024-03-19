@@ -30,10 +30,24 @@ function addMessage(sender, message) {
   const messagesContainer = document.getElementById('messages');
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('p-3', sender === 'user' ? 'bg-blue-100' : 'bg-green-100', 'rounded', 'text-gray-800');
-  messageDiv.textContent = message;
+  
+  // Append the messageDiv to the container immediately for layout, but only set text for user messages immediately
+  if (sender === 'user') {
+    messageDiv.textContent = message;
+  } else {
+    // For bot messages, use an empty span to 'type' the message into
+    const messageSpan = document.createElement('span');
+    messageDiv.appendChild(messageSpan);
+  }
   messagesContainer.appendChild(messageDiv);
   scrollToBottom();
+  
+  // Now, if it's a bot message, call typeText to fill in the message gradually
+  if (sender === 'bot') {
+    typeText(messageDiv.firstChild.id = 'botMessage' + new Date().getTime(), message, 8); // Unique ID for each message
+  }
 }
+
 
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function () {
@@ -84,4 +98,19 @@ document.getElementById('userInput').addEventListener('input', function() {
 
 function scrollToBottom() {
   window.scrollTo(0, document.body.scrollHeight);
+}
+
+function typeText(elementId, text, speed) {
+  let index = 0;
+  const element = document.getElementById(elementId);
+
+  function type() {
+      if (index < text.length) {
+          element.innerHTML += text.charAt(index);
+          index++;
+          setTimeout(type, speed);
+      }
+  }
+
+  type();
 }

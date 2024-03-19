@@ -24,3 +24,14 @@ h2 {
     white-space: normal;
     overflow-wrap: break-word;
 }
+
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+#mainPage {
+    padding-top: 60px;
+}

@@ -1,29 +1,59 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
 import openai
-
-app = Flask(__name__)
-CORS(app)
+import gradio as gr
 
 openai.api_key = "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"
 
-instructions = "I am here to support you as a special education teacher, providing guidance, encouragement, and resources tailored to your unique learning needs. My goal is to create a nurturing and inclusive environment where you feel valued and understood. Whether you need help with academic subjects, social skills, or coping strategies, I'm here to assist you with patience, empathy, and expertise. I understand that everyone learns differently, so I offer personalized strategies and accommodations to help you succeed. Let's work together to overcome challenges, celebrate your progress, and reach your full potential."
+#User Profiles
+class UserProfile:
+    def __init__(self, user_id, learning_preferences=None, interaction_history=None):
+        self.user_id = user_id
+        self.learning_preferences = learning_preferences or {}
+        self.interaction_history = interaction_history or []
 
+    def update_preferences(self, preferences):
+        self.learning_preferences.update(preferences)
 
-@app.route('/chat', methods=['POST'])
-def chat():
-    user_input = request.json.get('question')
-    messages = [{"role": "system", "content": instructions}]
-    messages.append({"role": "user", "content": user_input})
-    
+    def add_interaction(self, interaction):
+        self.interaction_history.append(interaction)
+
+user_profiles = {}
+
+def get_user_profile(user_id):
+    if user_id not in user_profiles:
+        user_profiles[user_id] = UserProfile(user_id)
+    return user_profiles[user_id]
+
+#AI-Customization
+def custom_chat_gpt(user_input, user_id):
+    user_profile = get_user_profile(user_id)
+
+    system_message = "I am here to help you with your special education needs."
+    if user_profile.learning_preferences:
+        system_message += f" I see you prefer {user_profile.learning_preferences.get('learning_style', 'various styles')}. Let's continue in that direction."
+
+    messages = [
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": user_input}
+    ]
+
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=messages,
-        temperature=0.3  # Update as needed. Closer to 0 makes answers less varied and closer to 1 makes answers more varied
+        temperature=0.7,
+        max_tokens=150,
     )
-    
-    chat_gpt_reply = response.choices[0].message.content.strip()
-    return jsonify({"answer": chat_gpt_reply})
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    chat_gpt_reply = response.choices[0].message.content.strip()
+    user_profile.add_interaction({"input": user_input, "response": chat_gpt_reply})
+
+    return chat_gpt_reply
+
+#Gradio interface
+demo = gr.Interface(
+    fn=lambda user_input, user_id: custom_chat_gpt(user_input, user_id),
+    inputs=[gr.Textbox(label="Ask me anything about special education"), gr.Textbox(label="User ID")],
+    outputs=gr.Textbox(label="Response"),
+    title="Special Education Assistant"
+)
+
+demo.launch()

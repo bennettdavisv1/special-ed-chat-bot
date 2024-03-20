@@ -1,13 +1,15 @@
 // Define `getChatbotResponse` at the top level so it's accessible everywhere
-async function getChatbotResponse(message) {
+// Adjust the getChatbotResponse function to include user_input and user_id
+async function getChatbotResponse(message, userId) {
   const endpoint = 'http://localhost:5000/chat'; // Endpoint variable for easy access
   
+  // Adjusted payload to include `user_id` and renamed `question` to `user_input` to match your Flask route expectations
   const payload = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ question: message })
+    body: JSON.stringify({ user_input: message, user_id: userId }) // Ensure this matches the expected format in your Python code
   };
 
   try {
@@ -18,13 +20,13 @@ async function getChatbotResponse(message) {
     }
 
     const data = await response.json();
-    return data.answer; // Assuming the response has an 'answer' property
+    return data.response; // Adjusted based on the expected 'response' key from the Flask route
   } catch (error) {
     console.error('Error fetching chatbot response:', error);
     return "Sorry, I couldn't fetch the response. Please try again.";
   }
 }
-  
+
 // Define `addMessage` at the top level as well
 function addMessage(sender, message) {
   const messagesContainer = document.getElementById('messages');
@@ -48,25 +50,29 @@ function addMessage(sender, message) {
   }
 }
 
-
-// Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function () {
   const submitButton = document.getElementById('submitButton');
   const userInput = document.getElementById('userInput');
-  const messagesContainer = document.getElementById('messages'); // Moved here, because it's used in `addMessage`
+  
+  // Example: Static user ID for demonstration purposes
+  // Replace this with the actual logic to obtain the user ID
+  const userId = 'exampleUserId'; 
 
-  // Event listener for the submit button
   submitButton.addEventListener('click', async () => {
-    const question = userInput.value.trim();
-    if (question) {
-      addMessage('user', question); // Display user message
-      const answer = await getChatbotResponse(question);
-      addMessage('bot', answer); // Display chatbot response
-      userInput.value = ''; // Clear input field
+    const message = userInput.value.trim();
+    if (message) {
+      addMessage('user', message); // Display user message
+      const response = await getChatbotResponse(message, userId);
+      if (response) { // Ensure response is not undefined before attempting to display it
+        addMessage('bot', response); // Display chatbot response
+      } else {
+        addMessage('bot', "I'm sorry, I couldn't process your request.");
+      }
+      userInput.value = ''; // Clear input field after sending
     } else {
       addMessage('bot', "Please enter a question.");
     }
-  });
+  });  
 
   // Event listener for pressing Enter in the textarea
   userInput.addEventListener('keydown', function(event) {

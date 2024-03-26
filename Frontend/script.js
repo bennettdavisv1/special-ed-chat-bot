@@ -27,26 +27,27 @@ async function getChatbotResponse(message, userId) {
   }
 }
 
-// Define `addMessage` at the top level as well
 function addMessage(sender, message) {
   const messagesContainer = document.getElementById('messages');
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('p-3', sender === 'user' ? 'bg-blue-100' : 'bg-green-100', 'rounded', 'text-gray-800');
-  
-  // Append the messageDiv to the container immediately for layout, but only set text for user messages immediately
+
+  let uniqueSpanId;
+
   if (sender === 'user') {
     messageDiv.textContent = message;
   } else {
-    // For bot messages, use an empty span to 'type' the message into
     const messageSpan = document.createElement('span');
+    uniqueSpanId = 'botMessage' + new Date().getTime();
+    messageSpan.id = uniqueSpanId;
     messageDiv.appendChild(messageSpan);
   }
+
   messagesContainer.appendChild(messageDiv);
   scrollToBottom();
-  
-  // Now, if it's a bot message, call typeText to fill in the message gradually
-  if (sender === 'bot') {
-    typeText(messageDiv.firstChild.id = 'botMessage' + new Date().getTime(), message, 8); // Unique ID for each message
+
+  if (sender === 'bot' && uniqueSpanId) {
+    typeText(uniqueSpanId, message, 20);
   }
 }
 

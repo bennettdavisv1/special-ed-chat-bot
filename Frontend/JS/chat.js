@@ -35,10 +35,12 @@ async function getChatbotResponse(message, userId) {
       messageDiv.appendChild(messageSpan);
     }
     messagesContainer.appendChild(messageDiv);
-    scrollToBottom();
+    
     if (sender === 'bot' && uniqueSpanId) {
       typeText(uniqueSpanId, message, 20);
     }
+
+    scrollToBottom();
   }
   
   document.addEventListener('DOMContentLoaded', function () {

@@ -1,0 +1,1 @@
+This is an "About Me" paragraph where you can share details about yourself. Tailwind CSS is used to style this paragraph to make it fit well within the design of a personal or professional website. The text is centered, and the container uses 80% of the page width, making the content feel more focused and easier to read.

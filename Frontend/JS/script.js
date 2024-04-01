@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       addMessage('bot', "Please enter a question.");
     }
   });
+
   userInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();

@@ -1,4 +1,4 @@
-async function getChatbotResponse(message, userId) {
+  async function getChatbotResponse(message, userId) {
     const endpoint = 'http://localhost:5000/chat';
     const payload = {
       method: 'POST',

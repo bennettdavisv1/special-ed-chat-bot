@@ -23,30 +23,46 @@ def get_user_profile(user_id):
         user_profiles[user_id] = UserProfile(user_id)
     return user_profiles[user_id]
 
-#AI-Customization
+# AI-Customization
 def custom_chat_gpt(user_input, user_id):
+    if not user_input.strip():
+        return "Please enter a question or comment."
+
     user_profile = get_user_profile(user_id)
 
-    system_message = "I am here to help you with your special education needs."
+    # Check for preference update command (example: "Set preference: visual")
+    if user_input.lower().startswith("set preference:"):
+        preference = user_input.split(":", 1)[1].strip()
+        user_profile.update_preferences({"learning_style": preference})
+        return f"Learning preference updated to {preference}."
+
+    system_message = (
+        "Hello, I'm Mr. Harley from New York City. "
+        "I'm here to assist you with topics like math, sciences, literature, and so much more!"
+    )
     if user_profile.learning_preferences:
-        system_message += f" I see you prefer {user_profile.learning_preferences.get('learning_style', 'various styles')}. Let's continue in that direction."
+        system_message += f" I understand you prefer {user_profile.learning_preferences.get('learning_style', 'various styles')}, so let's continue in that direction."
 
     messages = [
         {"role": "system", "content": system_message},
         {"role": "user", "content": user_input}
     ]
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=messages,
-        temperature=0.7,
-        max_tokens=150,
-    )
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=messages,
+            temperature=0.7,
+            max_tokens=200,
+        )
+        chat_gpt_reply = response.choices[0].message.content.strip()
+    except Exception as e:
+        chat_gpt_reply = "Try that again, sorry!"
 
-    chat_gpt_reply = response.choices[0].message.content.strip()
     user_profile.add_interaction({"input": user_input, "response": chat_gpt_reply})
 
     return chat_gpt_reply
+
 
 #Gradio interface
 demo = gr.Interface(

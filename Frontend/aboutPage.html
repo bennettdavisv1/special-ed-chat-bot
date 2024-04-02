@@ -7,6 +7,10 @@
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+    <!-- Google Sign-In -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="294875792056-1i5a7v5c4arpks4emu50plejrlibqjfc.apps.googleusercontent.com">
 </head>
 <body>
     <!-- Header -->
@@ -17,7 +21,9 @@
             <span id="title" class="ml-3 text-xl">Special Education Tutor</span>
           </a>
           <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a id="aboutButton" class="mr-5 cursor-pointer underline">About</a>
+            <a id="aboutButton" class="mr-8 cursor-pointer underline">About</a>
+            <!-- Google Sign-In Button -->
+            <div class="g-signin2 ml-3" data-onsuccess="onSignIn" data-theme="dark" data-longtitle="true"></div>
           </nav>
         </div>
     </header>      

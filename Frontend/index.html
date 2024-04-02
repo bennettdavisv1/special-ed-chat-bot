@@ -27,7 +27,6 @@
                 <!-- Google Sign-In Button -->
                 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-longtitle="true"></div>
             </nav>
-
         </div>
     </header>
     <!-- End header -->
@@ -53,16 +52,6 @@
         </div>
     </div>
     <!-- End of main page -->
-    <script>
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId());
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail());
-            // You can also send this information to your server for further processing
-        }
-    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="JS/general.js"></script>

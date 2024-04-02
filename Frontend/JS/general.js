@@ -25,3 +25,12 @@ function onSignIn(googleUser) {
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
 }
+
+function toggleMenu() {
+  const navMenu = document.getElementById('navMenu');
+  if (navMenu.classList.contains('hidden')) {
+      navMenu.classList.remove('hidden');
+  } else {
+      navMenu.classList.add('hidden');
+  }
+}

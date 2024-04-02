@@ -44,3 +44,9 @@ h2 {
 #aboutTheBot {
     margin-top: 40px;
 }
+
+@media (max-width: 767px) {
+    #titleAndLogo {
+        padding-top: 15px;
+    }
+}

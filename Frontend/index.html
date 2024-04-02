@@ -6,23 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot UI</title>
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+    <!-- Google Sign-In -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="294875792056-1i5a7v5c4arpks4emu50plejrlibqjfc.apps.googleusercontent.com">
 </head>
 
 <body>
     <!-- Header -->
     <header id="header" class="bg-gray-800 text-white body-font shadow w-full">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
-          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0 cursor-pointer">
-            <img src="Images/ChatbotLogo.png" alt="Logo" class="w-10 h-10 rounded-full object-cover">
-            <span id="title" class="ml-3 text-xl">Special Education Tutor</span>
-          </a>
-          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a id="aboutButton" class="mr-5 hover:underline cursor-pointer">About</a>
-          </nav>
+            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0 cursor-pointer">
+                <img src="Images/ChatbotLogo.png" alt="Logo" class="w-10 h-10 rounded-full object-cover">
+                <span id="title" class="ml-3 text-xl">Special Education Tutor</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <!-- Google Sign-In Button -->
+                <div class="g-signin2 mr-5" data-onsuccess="onSignIn" data-theme="dark" data-longtitle="true"></div>
+                <a id="aboutButton" class="mr-5 hover:underline cursor-pointer">About</a>
+            </nav>
+
         </div>
-    </header>      
+    </header>
     <!-- End header -->
     <!-- Main page -->
     <div id="mainPage">
@@ -32,20 +39,35 @@
                     <!-- Dynamic chat messages will appear here -->
                 </div>
                 <form>
-                    <div class="max-w-full flex items-center justify-center bg-white rounded-lg border border-gray-200 p-4 space-x-3">
+                    <div
+                        class="max-w-full flex items-center justify-center bg-white rounded-lg border border-gray-200 p-4 space-x-3">
                         <div id="textAreaContainer" class="flex-grow">
-                            <textarea id="userInput" class="w-full border-none focus:ring-0 p-2 rounded-lg" placeholder="Message your tutor..." rows="3"></textarea>
+                            <textarea id="userInput" class="w-full border-none focus:ring-0 p-2 rounded-lg"
+                                placeholder="Message your tutor..." rows="3"></textarea>
                         </div>
-                        <button id="submitButton" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Submit</button>
+                        <button id="submitButton" type="button"
+                            class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <!-- End of main page -->
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+            // You can also send this information to your server for further processing
+        }
+    </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="JS/general.js"></script>
     <script src="JS/chat.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
 </body>
+
 </html>

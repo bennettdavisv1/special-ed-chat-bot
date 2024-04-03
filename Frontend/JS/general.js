@@ -34,3 +34,5 @@ function toggleMenu() {
     navMenu.classList.add('hidden');
   }
 }
+
+document.getElementById('menuButton').addEventListener('click', toggleMenu);

@@ -24,7 +24,8 @@
                     <img src="Images/ChatbotLogo.png" alt="Logo" class="w-10 h-10 rounded-full object-cover">
                     <span id="title" class="ml-3 text-xl align-middle">Special Education Tutor</span>
                 </a>
-                <button id="menuButton" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400">
+                <button id="menuButton"
+                    class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400">
                     <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -37,8 +38,6 @@
                 class="flex-col md:flex-row md:ml-auto flex-wrap items-center text-base justify-center hidden md:flex">
                 <a id="aboutButton" class="xs:mb-4 mr-8 hover:underline cursor-pointer">About</a>
                 <a href="preferences.html" class="mr-8 underline cursor-pointer">Preferences</a>
-                <!-- Google Sign-In Button -->
-                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" data-longtitle="true"></div>
             </nav>
         </div>
     </header>
@@ -74,14 +73,37 @@
                         <option value="Post-Graduate">Post-Graduate</option>
                     </select>
                 </div>
-                <button type="submit"
-                    class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5">Update
-                    Preferences</button>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Learning Disabilities:</label>
+                    <div class="mt-1">
+                        <div class="flex items-center">
+                            <input id="dyslexia" name="learning_disabilities" type="checkbox" value="Dyslexia"
+                                class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                            <label for="dyslexia" class="ml-2 block text-sm text-gray-900">Dyslexia</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="dyscalculia" name="learning_disabilities" type="checkbox" value="Dyscalculia"
+                                class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                            <label for="dyscalculia" class="ml-2 block text-sm text-gray-900">Dyscalculia</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="adhd" name="learning_disabilities" type="checkbox" value="ADHD"
+                                class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                            <label for="adhd" class="ml-2 block text-sm text-gray-900">ADHD</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="asd" name="learning_disabilities" type="checkbox" value="ASD"
+                                class="h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                            <label for="asd" class="ml-2 block text-sm text-gray-900">Autism Spectrum Disorder
+                                (ASD)</label>
+                        </div>
+                    </div>
+                </div>
             </form>
             <!-- End Preference Form -->
         </div>
     </div>
-    
+
     <script src="JS/general.js"></script> <!-- Adjust the path to your JavaScript file -->
 </body>
 
